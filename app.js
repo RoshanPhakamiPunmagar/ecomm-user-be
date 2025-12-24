@@ -1,12 +1,39 @@
-const express = require('express');
+// app.js
+import express from "express";
+import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// // Routers
+// import authRouter from "./src/routes/authRoutes.js";
+
 const app = express();
-const config = require('./config');
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Middleware
 app.use(express.json());
+app.use(cors());
 
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/products', require('./routes/productRoutes'));
-app.use('/api/orders', require('./routes/orderRoutes'));
-app.use('/api/reviews', require('./routes/reviewRoutes'));
+// Health check
+app.get("/", (req, res) => {
+  res.send("Scalable eCommerce Application Using MERN Stack");
+});
 
-module.exports = app;
+// Static files
+app.use("/public", express.static(path.join(__dirname, "src/assets")));
+
+// // Routes
+// app.use("/api/v1/auth", authRouter);
+
+// Global error handler
+app.use((error, req, res, next) => {
+  console.error(error);
+
+  res.status(error.status || 500).json({
+    status: "error",
+    message: error.message || "Internal Server Error",
+  });
+});
+
+export default app;
