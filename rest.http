@@ -1,0 +1,49 @@
+@rootURL = http://localhost:3000
+@apiEP = {{rootURL}}/api/customer/v1
+@adminEP = {{apiEP}}/admin
+@authEP = {{apiEP}}/auth
+
+
+# Customer Backend APIs (Base: /api/customer/v1/)
+# Authentication APIs:
+# POST /api/customer/v1/auth/signup
+# POST /api/customer/v1/auth/login     
+# GET /api/customer/v1/auth/verify/:token
+# POST /api/customer/v1/auth/refresh-token
+# Product APIs:
+
+
+
+### Signup API
+POST {{authEP}}/signup
+Content-Type: application/json
+
+{
+  "email": "customer1@gmail.com",
+  "password": "Password123"
+}
+
+
+###
+POST {{authEP}}/login
+Content-Type: application/json
+
+{
+    "email" : "asdf2@sdfc.com",
+    "password" : "sdfdsf"
+}
+
+### renew jwt
+GET {{authEP}}/renew-jwt
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGYyQHNkZmMuY29tIiwiaWF0IjoxNzYyMzg1Njk4LCJleHAiOjE3NjQ5Nzc2OTh9.USVnKQN8QYy_Nt49ydiSeyy-7EKb9uHPdjVPIzoSZhM
+
+### user detail api
+GET {{authEP}}/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGYyQHNkZmMuY29tIiwiaWF0IjoxNzY0MTExMzg1LCJleHAiOjE3NjQxOTc3ODV9.MaV9ufzH3ncxv_BwvOA5OQ9oojq40WsjRScuCKaTVZQ
+
+###
+GET {{authEP}}/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGYyQHNkZmMuY29tIiwiaWF0IjoxNzYyOTg4MjgwLCJleHAiOjE3NjMwNzQ2ODB9.aABxJ2brtLhnFaguICvZZhi1Yc_SNDbMmL_G5Mlkn4A
+
+
+
