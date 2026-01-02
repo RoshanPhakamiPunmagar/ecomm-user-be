@@ -7,6 +7,8 @@ import { fileURLToPath } from "url";
 // // Routers
 import authRouter from "./src/routes/authRoutes.js";
 
+import productRouter from "./src/routes/productRoutes.js";
+
 const app = express();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -25,6 +27,8 @@ app.use("/public", express.static(path.join(__dirname, "src/assets")));
 
 // Routes
 app.use("/api/customer/v1/auth", authRouter);
+
+app.use("/api/customer/v1/products", productRouter);
 
 // Global error handler
 app.use((error, req, res, next) => {

@@ -21,8 +21,9 @@ router.post("/login", loginValidation, loginUser);
 
 // api/v1/auth/renew-jwt
 // renew token authenticator
-router.get("/renew-jwt", renewauth, renewToken);
+router.get("/verify/:token", renewauth, renewToken);
 
+router.post("/refresh-token", renewauth, renewToken);
 // api/v1/auth/users
 router.get("/users", auth, fetchUserDetail);
 

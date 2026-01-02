@@ -1,8 +1,8 @@
 @rootURL = http://localhost:3000
 @apiEP = {{rootURL}}/api/customer/v1
-@adminEP = {{apiEP}}/admin
 @authEP = {{apiEP}}/auth
 
+@productsEP = {{apiEP}}/products
 
 # Customer Backend APIs (Base: /api/customer/v1/)
 # Authentication APIs:
@@ -24,26 +24,28 @@ Content-Type: application/json
 }
 
 
-###
+### login API
 POST {{authEP}}/login
 Content-Type: application/json
 
 {
-    "email" : "asdf2@sdfc.com",
-    "password" : "sdfdsf"
+    "email" : "customer1@gmail.com",
+    "password" : "Password123"
 }
 
 ### renew jwt
-GET {{authEP}}/renew-jwt
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGYyQHNkZmMuY29tIiwiaWF0IjoxNzYyMzg1Njk4LCJleHAiOjE3NjQ5Nzc2OTh9.USVnKQN8QYy_Nt49ydiSeyy-7EKb9uHPdjVPIzoSZhM
+GET {{authEP}}/verify/:token
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN1c3RvbWVyMUBnbWFpbC5jb20iLCJpYXQiOjE3NjY4MTYzMjksImV4cCI6MTc2OTQwODMyOX0.WWfdpn54OA-1Zpil4IFTuKjzBvTBg1rMyJ3DuA7jqFk
 
-### user detail api
-GET {{authEP}}/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGYyQHNkZmMuY29tIiwiaWF0IjoxNzY0MTExMzg1LCJleHAiOjE3NjQxOTc3ODV9.MaV9ufzH3ncxv_BwvOA5OQ9oojq40WsjRScuCKaTVZQ
+### refresh token
+POST {{authEP}}/refresh-token
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImN1c3RvbWVyMUBnbWFpbC5jb20iLCJpYXQiOjE3NjY4MTYzMjksImV4cCI6MTc2OTQwODMyOX0.WWfdpn54OA-1Zpil4IFTuKjzBvTBg1rMyJ3DuA7jqFk
 
-###
-GET {{authEP}}/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZGYyQHNkZmMuY29tIiwiaWF0IjoxNzYyOTg4MjgwLCJleHAiOjE3NjMwNzQ2ODB9.aABxJ2brtLhnFaguICvZZhi1Yc_SNDbMmL_G5Mlkn4A
+# Product APIs:
+### GET /api/customer/v1/products (Get all products with filters/pagination)
+GET {{productsEP}}
 
 
 
+
+# GET /api/customer/v1/products/:id (Get single product details)

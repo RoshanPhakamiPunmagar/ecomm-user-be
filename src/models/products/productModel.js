@@ -1,17 +1,26 @@
-import ProductSchema from "/productSchema.js";
+import productSchema from "./productSchema.js";
 
 export const createNewProduct = (prodObj) => {
-  return ProductSchema(prodObj).save();
+  return productSchema(prodObj).save();
 };
 
 export const getProductById = (id) => {
-  return ProductSchema.findById(id);
+  return productSchema.findById(id);
 };
 
 export const updateProduct = async (filter, obj) => {
-  return await ProductSchema.findOneAndUpdate(filter, obj);
+  return await productSchema.findOneAndUpdate(filter, obj);
 };
 
-export const getProducts = async (filter) => {
-  return await ProductSchema.find(filter);
+export const getProducts = ({ filter, skip, limit, sort }) => {
+  return productSchema
+    .find(filter)
+    .populate("category", "name")
+    .skip(skip)
+    .limit(limit)
+    .sort(sort);
+};
+
+export const countProducts = (filter) => {
+  return productSchema.countDocuments(filter);
 };
