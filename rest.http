@@ -48,4 +48,6 @@ GET {{productsEP}}
 
 
 
+
+
 # GET /api/customer/v1/products/:id (Get single product details)

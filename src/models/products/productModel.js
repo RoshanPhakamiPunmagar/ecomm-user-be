@@ -1,5 +1,7 @@
 import productSchema from "./productSchema.js";
 
+import "../categories/categorySchema.js"; // Import Category schema
+
 export const createNewProduct = (prodObj) => {
   return productSchema(prodObj).save();
 };
